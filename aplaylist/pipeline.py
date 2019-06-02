@@ -1,8 +1,6 @@
 from .fetcher import SpotifyFetcher
 from .models import Integration
 from .models import Album
-import json
-from django.db.models.query_utils import Q
 
 
 def save_integration(backend, user, response, *args, **kwargs):

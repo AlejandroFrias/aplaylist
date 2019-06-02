@@ -2,9 +2,7 @@ import time
 import requests
 from django.contrib.auth.models import User
 from dict_digger import dig
-from django.conf import settings
 from retryable import retry
-from spotipy.oauth2 import SpotifyOAuth
 
 
 class SpotifyFetcher:

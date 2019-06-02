@@ -10,7 +10,6 @@ def home(request):
 
 def index(request):
     fetcher = SpotifyFetcher(request.user.id)
-    token = fetcher.integration.access_token
 
     # currently playing data
     url = f"https://api.spotify.com/v1/me/player/currently-playing"

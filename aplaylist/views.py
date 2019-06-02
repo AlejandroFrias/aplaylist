@@ -19,7 +19,7 @@ def index(request):
         raw_data = "Nothing currently playing"
 
     # available devices data
-    url = f"https://api.spotify.com/v1/me/player/devices?access_token={token}"
+    url = f"https://api.spotify.com/v1/me/player/devices"
     devices_data = fetcher.fetch_data(url, ["devices"])
 
     context = {

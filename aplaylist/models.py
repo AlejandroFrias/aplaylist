@@ -16,7 +16,10 @@ class Integration(models.Model):
 
 class AlbumPlaylist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=256, unique=True)
+    name = models.CharField(max_length=256)
+
+    class Meta:
+        unique_together = ("user", "name")
 
 
 class Album(models.Model):

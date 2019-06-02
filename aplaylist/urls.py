@@ -20,4 +20,9 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("aplaylist", views.index, name="index"),
     path("aplaylist/play-album/<spotify_id>/<device_id>", views.play_album, name="play-album"),
+    path(
+        "aplaylist/play-album-playlist/<name>/<device_id>",
+        views.play_album_playlist,
+        name="play-album-playlist",
+    ),
 ]

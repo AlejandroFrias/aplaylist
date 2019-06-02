@@ -41,3 +41,16 @@ def play_album(request, spotify_id, device_id):
     token = fetcher.integration.access_token
     url = f"https://api.spotify.com/v1/me/player/play?access_token={token}&device_id={device_id}"
     return requests.put(url, json={"context_uri": f"spotify:album:{spotify_id}"})
+
+
+def play_album_playlist(request, name, device_id):
+    fetcher = SpotifyFetcher(request.user.id)
+    token = fetcher.integration.access_token
+    ap = request.user.albumplaylist_set.get(name=name)
+    track_uris = []
+    for album in ap.album_set.all():
+        tracks_url = f"https://api.spotify.com/v1/albums/{album.spotify_id}/tracks"
+        tracks_data = fetcher.fetch_data(tracks_url, ["items"], ["next"])
+        track_uris.extend([td['uri'] for td in tracks_data])
+    url = f"https://api.spotify.com/v1/me/player/play?access_token={token}&device_id={device_id}"
+    return requests.put(url, json={"uris": track_uris[2:]})

@@ -7,7 +7,7 @@
 
 <h2>Your Album Playlist</h2>
 {% for ap in album_playlists %}
-<h3>{{ap.name}}</h3>
+<h3>{{ap.name}} <a href="/aplaylist/play-album-playlist/{{ap.name}}/{{device_id}}" target="_blank">Play</a></h3>
 <ul>
   {% for album in ap.album_set.all %}
   <li>{{ album }}<a href="/aplaylist/play-album/{{album.spotify_id}}/{{device_id}}" target="_blank">Play</a></li>

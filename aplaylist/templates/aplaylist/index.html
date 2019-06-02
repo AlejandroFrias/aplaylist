@@ -10,7 +10,7 @@
 <h3>{{ap.name}}</h3>
 <ul>
   {% for album in ap.album_set.all %}
-  <li>{{ album }}<a href="/aplaylist/play-album/{{album.spotify_id}}" target="_blank">Play</a></li>
+  <li>{{ album }}<a href="/aplaylist/play-album/{{album.spotify_id}}/{{device_id}}" target="_blank">Play</a></li>
   {% endfor %}
 </ul>
 {% endfor %}

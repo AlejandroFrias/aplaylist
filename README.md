@@ -20,11 +20,15 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+Setup Spotify developer dashboard
+* Create an app at `https://developer.spotify.com/dashboard/applications`
+* Add `http://localhost:8000/social/complete/spotify/` to your *Redirect URIs*
+
 Setup your environment variables
 ```
 # environment variables (add to bashrc/bash_profile if you don't want to do this everytime)
-export SOCIAL_AUTH_SPOTIFY_KEY=<your-client-id>
-export SOCIAL_AUTH_SPOTIFY_SECRET=<your-secret>
+export SOCIAL_AUTH_SPOTIFY_KEY=<your-spotify-client-id>
+export SOCIAL_AUTH_SPOTIFY_SECRET=<your-spotify-secret>
 export DJANGO_SECRET_KEY=<any-50-character-long-string>
 ```
 
@@ -44,6 +48,6 @@ Run the app at http://localhost:8000
 There are some helpful `make` commands that will work as long as the environment variables above are set.
 
 ```
-# G
+# shortcut for installing python packages, sourcing venv and runserver
 make server
 ```

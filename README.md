@@ -38,3 +38,12 @@ Run the app at http://localhost:8000
 ```
 ./manage.py runserver
 ```
+
+### Shortcut for the above
+
+There are some helpful `make` commands that will work as long as the environment variables above are set.
+
+```
+# G
+make server
+```

@@ -1,0 +1,27 @@
+<h1>aplaylist index</h1>
+{% if request.user.is_authenticated %}
+    <a href="/logout">Log out</a>
+{% else %}
+    <a href="{% url "social:begin" "spotify" %}">Spotify</a>
+{% endif %}
+
+<h3>Your Albums</h3>
+{% if albums %}
+  <ul>
+    {% for album in albums %}
+    <li>{{ album }}<a href="/aplaylist/play-album/{{album.spotify_id}}" target="_blank">Play</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>You don't have any saved albums</p>
+{% endif %}
+
+<h3>Current Playing Raw Data</h3>
+{{ raw_data }}
+
+<h3>Available Devices Data</h3>
+{% if devices_data %}
+  {{ devices_data }}
+{% else %}
+  <p>No available devices</p>
+{% endif %}

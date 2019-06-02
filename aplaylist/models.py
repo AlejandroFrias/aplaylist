@@ -1,3 +1,22 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+
+class Integration(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="integration")
+    access_token = models.CharField(max_length=256, blank=True)
+    refresh_token = models.CharField(max_length=256, blank=True)
+    integration_user_id = models.CharField(max_length=256, blank=True)
+
+    def __str__(self):
+        return f"Integration for {self.user}"
+
+
+class Album(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=256)
+    total_tracks = models.PositiveSmallIntegerField()
+    spotify_id = models.CharField(max_length=256)
+
+    def __str__(self):
+        return f"{self.name} ({self.total_tracks} tracks)"

@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ay29-ku0z3zr^o)(-39ad97w1rtmc79(@w+^!_=o44b5sl%tn8'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
+    'social_django',
+    'aplaylist',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +51,37 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.spotify.SpotifyOAuth2',
+]
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_SPOTIFY_KEY = os.environ.get('SOCIAL_AUTH_SPOTIFY_KEY')
+SOCIAL_AUTH_SPOTIFY_SECRET = os.environ.get('SOCIAL_AUTH_SPOTIFY_SECRET')
+SOCIAL_AUTH_SPOTIFY_SCOPE = [
+    'user-read-email',
+    'user-follow-read',
+    'user-library-read',
+    'user-modify-playback-state',
+    'user-read-playback-state',
+    'user-read-currently-playing',
+]
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'aplaylist.pipeline.save_integration',
+    'aplaylist.pipeline.save_albums',
+)
+LOGIN_REDIRECT_URL = '/aplaylist'
+LOGOUT_REDIRECT_URL = '/'
+
 
 ROOT_URLCONF = 'spotify.urls'
 

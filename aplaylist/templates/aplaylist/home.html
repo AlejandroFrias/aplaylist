@@ -2,5 +2,5 @@
 {% if request.user.is_authenticated %}
     <a href="/logout">Log out</a>
 {% else %}
-    <a href="{% url "social:begin" "spotify" %}">Spotify</a>
+    <a href="{% url "social:begin" "spotify" %}">Login</a>
 {% endif %}

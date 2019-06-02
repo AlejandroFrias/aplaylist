@@ -5,7 +5,7 @@ import json
 
 
 def home(request):
-    return render(request, 'aplaylist/home.html')
+    return render(request, "aplaylist/home.html")
 
 
 def index(request):
@@ -14,20 +14,21 @@ def index(request):
 
     # currently playing data
     url = f"https://api.spotify.com/v1/me/player/currently-playing"
-    raw_data = fetcher.fetch_data(url)
-    if not raw_data:
-        raw_data = "Nothing currently playing"
+    current_play_data = fetcher.fetch_data(url)
+    if not current_play_data:
+        current_play_data = "Nothing currently playing"
 
     # available devices data
     url = f"https://api.spotify.com/v1/me/player/devices"
     devices_data = fetcher.fetch_data(url, ["devices"])
 
     context = {
-        'albums': request.user.album_set.all(),
-        'raw_data': json.dumps(raw_data),
-        'devices_data': devices_data,
+        "album_playlists": request.user.albumplaylist_set.all(),
+        "current_play_data": json.dumps(current_play_data),
+        "devices_data": devices_data,
     }
-    return render(request, 'aplaylist/index.html', context)
+    return render(request, "aplaylist/index.html", context)
+
 
 def play_album(request, spotify_id):
     fetcher = SpotifyFetcher(request.user.id)

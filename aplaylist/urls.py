@@ -17,7 +17,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('aplaylist', views.index, name='index'),
-    path('aplaylist/play-album/<spotify_id>', views.play_album, name='play-album'),
+    path("", views.home, name="home"),
+    path("aplaylist", views.index, name="index"),
+    path("aplaylist/play-album/<spotify_id>", views.play_album, name="play-album"),
 ]

@@ -5,19 +5,19 @@
     <a href="{% url "social:begin" "spotify" %}">Spotify</a>
 {% endif %}
 
-<h3>Your Albums</h3>
-{% if albums %}
-  <ul>
-    {% for album in albums %}
-    <li>{{ album }}<a href="/aplaylist/play-album/{{album.spotify_id}}" target="_blank">Play</a></li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>You don't have any saved albums</p>
-{% endif %}
+<h2>Your Album Playlist</h2>
+
+{% for ap in album_playlists %}
+<h3>{{ap.name}}</h3>
+<ul>
+  {% for album in ap.album_set.all %}
+  <li>{{ album }}<a href="/aplaylist/play-album/{{album.spotify_id}}" target="_blank">Play</a></li>
+  {% endfor %}
+</ul>
+{% endfor %}
 
 <h3>Current Playing Raw Data</h3>
-{{ raw_data }}
+{{ current_play_data }}
 
 <h3>Available Devices Data</h3>
 {% if devices_data %}

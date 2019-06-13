@@ -21,7 +21,7 @@ pip install -r requirements.txt
 ```
 
 Setup Spotify developer dashboard
-* Create an app at `https://developer.spotify.com/dashboard/applications`
+* Create an app at https://developer.spotify.com/dashboard/applications
 * Add `http://localhost:8000/social/complete/spotify/` to your *Redirect URIs*
 
 Setup your environment variables

@@ -9,7 +9,7 @@ Click==7.0
 decorator==4.4.0
 defusedxml==0.6.0
 dict-digger==0.2.1
-Django==2.2.4
+Django==2.2.24
 django-extensions==2.1.7
 idna==2.8
 ipdb==0.12
